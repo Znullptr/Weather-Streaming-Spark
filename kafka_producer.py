@@ -9,7 +9,7 @@ kafka_topic_name = 'weathertopic'
 
 def run_kafka():
     producer = KafkaProducer(bootstrap_servers=kafka_bootstrap_servers, value_serializer=lambda v: json.dumps(v).encode("utf-8"))
-    api_key = 'oRSW6wcEIAFKgd8LPizC25Ole9M58ODV'
+    api_key = 'YOUR_API_KEY'
 
     def get_weather_details(api_endpoint, params, city_name):
         api_response = requests.get(api_endpoint, params=params)
