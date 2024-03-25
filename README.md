@@ -16,7 +16,7 @@ Here you can find a detailed overview of our application pipeline:
 <br/>
 <br/>
 <p>
-   <img width="800" height="500" src="https://github.com/Znullptr/WeatherStreamingSpark/blob/main/images/pipeline.png">
+   <img width="1000" height="500" src="https://github.com/Znullptr/WeatherStreamingSpark/blob/main/images/pipeline.png">
     </p>  
 
 
@@ -57,25 +57,39 @@ To set up the project locally, follow these steps:
 1) Clone the repository:
    > git clone <https://github.com/Znullptr/WeatherStreamingSpark>
 
-3) Install dependencies:
+2) Install dependencies:
    > pip install -r requirements.txt
    
-4) Start your hadoop cluster.
+3) Start your hadoop cluster.
    
-5) Create and configure your systemd unit files for each service required by the application.
+4) start hive and create weather table using this command(modify location to match your hdfs environment):
+   > CREATE EXTERNAL TABLE weather_details_tb1 ( 
+    CityName STRING,
+    Temperature DOUBLE,
+    Humidity DOUBLE,
+    RainIntensity INTEGER,
+    WindSpeed DOUBLE,
+    WindDirection DOUBLE,
+    CreationTime TIMESTAMP)
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY ','
+    STORED AS TEXTFILE 
+    LOCATION '/user/hadoop/outputs/spark_outputs/weatherstreaming/data';
+   
+6) Create and configure your systemd unit files for each service required by the application.
 
-6) Edit **weather_streaming_dag.py** to match your environement configuration.
+7) Edit **weather_streaming_dag.py** to match your environement configuration.
    
-7) Copy **weather_streaming_dag.py** to your dags floder and start your apache airflow server.
+8) Copy **weather_streaming_dag.py** to your dags floder and start your apache airflow server.
    
-8) Open airflow interface you should see the dag imported and you can execute it.
-  <p>
-   <img width="800" height="500" src="images/airflow_dash.png">
-    </p>  
-9) Once it's successfully completed, you should see the application dashboard listening on port 8191:
-  <p>
-   <img width="800" height="500" src="images/dash.png">
-    </p>  
+9) Open airflow interface you should see the dag imported and you can execute it.
+   <p>
+    <img width="1000" height="500" src="images/airflow_dash.png">
+   </p>
+10) Once it's successfully completed, you should see the application dashboard listening on port 8191:
+     <p>
+      <img width="1000" height="500" src="images/dash.png">
+       </p>  
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request with any improvements or bug fixes.
