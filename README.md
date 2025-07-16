@@ -1,4 +1,4 @@
-# Real-Time Weather Monitoring Application
+# Streaming Weather Monitoring Application
 
 ## Overview
 This project is a real-time weather monitoring application that collects weather data from various cities in Tunisia (Tunis, Sfax, Mahdia) and streams it to Kafka topics. It includes components for data collection, processing, and visualization.
